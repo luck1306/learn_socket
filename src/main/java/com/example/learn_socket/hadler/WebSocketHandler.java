@@ -23,7 +23,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception{
         String payload = message.getPayload();
-        log.info(String.format("payload : { %s }", payload));
+        log.info(String.format("payload : %s ", payload));
 
         MessageDto msg = objectMapper.readValue(payload, MessageDto.class);
         ChattingRoomDto room = messageService.findById(msg.getRoomId());

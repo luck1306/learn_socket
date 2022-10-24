@@ -20,8 +20,9 @@ public class ChattingRoomDto {
     public void handleAction(WebSocketSession session, MessageDto message, MessageService messageService) {
         if(message.getMessageType().equals(MessageDto.MessageType.ENTER)) {
             sessions.add(session);
-            message.updateMessage(MessageDto.MessageType.COMM);
+            message.updateMessage(message.getSender() + "님이 입장했습니다.");
         }
+        sendMessage(message, messageService);
     }
 
     public <T> void sendMessage(T message, MessageService messageService) {

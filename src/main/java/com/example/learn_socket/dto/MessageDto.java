@@ -21,7 +21,7 @@ public class MessageDto {
         this.message = message;
     }
 
-    public void updateMessage(MessageType messageType) {
-        this.messageType = messageType;
+    public void updateMessage(String message) {
+        this.message = message;
     }
 }

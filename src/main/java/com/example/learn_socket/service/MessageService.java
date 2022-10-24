@@ -36,6 +36,7 @@ public class MessageService {
     }
 
     public ChattingRoomDto createRoom(String name) {
+        chattingRoomDto.put(name, new ChattingRoomDto(name));
         return new ChattingRoomDto(name);
     }
 
