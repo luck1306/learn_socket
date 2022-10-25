@@ -1,7 +1,7 @@
 package com.example.learn_socket.controller;
 
-import com.example.learn_socket.dto.ChattingRoomDto;
-import com.example.learn_socket.service.MessageService;
+import com.example.learn_socket.entity.ChattingRoomDto;
+import com.example.learn_socket.repository.ChattingRoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,15 +15,15 @@ import java.util.List;
 @RequestMapping("/chat")
 @RestController
 public class MessageController {
-    private final MessageService messageService;
+    private final ChattingRoomRepository repository;
 
     @PostMapping
     public ChattingRoomDto createRoom(@RequestParam String name) {
-        return messageService.createRoom(name);
+        return repository.createRoom(name);
     }
 
     @GetMapping
     public List<ChattingRoomDto> findAllRoom() {
-        return messageService.findAllRoom();
+        return repository.findAllRoom();
     }
 }

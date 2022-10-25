@@ -1,7 +1,8 @@
 package com.example.learn_socket.hadler;
 
-import com.example.learn_socket.dto.ChattingRoomDto;
+import com.example.learn_socket.entity.ChattingRoomDto;
 import com.example.learn_socket.dto.MessageDto;
+import com.example.learn_socket.repository.ChattingRoomRepository;
 import com.example.learn_socket.service.MessageService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     private final MessageService messageService;
 
+    private final ChattingRoomRepository repository;
+
     private final ObjectMapper objectMapper;
 
     @Override
@@ -26,7 +29,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
         log.info(String.format("payload : %s ", payload));
 
         MessageDto msg = objectMapper.readValue(payload, MessageDto.class);
-        ChattingRoomDto room = messageService.findById(msg.getRoomId());
-        room.handleAction(session, msg, messageService);
+        ChattingRoomDto room = repository.findById(msg.getRoomId());
+//        room.handleAction(session, msg, messageService);
     }
 }
